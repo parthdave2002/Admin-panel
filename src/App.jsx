@@ -5,6 +5,10 @@ import './charts/ChartjsConfig';
 // Import pages
 import Dashboard from './pages/Dashboard';
 import Sample from './pages/sample';
+import SuitablePlace from './pages/GeospatialSolutions/SuitablePlace';
+import AgriculturePlatform from './pages/GeospatialSolutions/AgriculturePlatform';
+import Infrastructure from './pages/GeospatialSolutions/Infrastructure';
+import UrbanMobility from './pages/GeospatialSolutions/UrbanMobility';
 
 function App() {
 
@@ -21,6 +25,12 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Dashboard />} />
         <Route exact path="/sample" element={<Sample />} />
+        
+        {/* Geospatial Solutions  */}
+        <Route exact path="/agriculture-platform" element={<AgriculturePlatform />} />
+        <Route exact path="/infrastructure" element={<Infrastructure />} />
+        <Route exact path="/urban-mobility" element={<UrbanMobility />} />
+        <Route exact path="/suitable-place" element={<SuitablePlace />} />
 
       </Routes>
     </>

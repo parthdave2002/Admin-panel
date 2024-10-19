@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate  } from "react-router-dom";
 import SidebarLinkGroup from "./SidebarLinkGroup";
-import logo from "../images/logo.svg"
+import logo from "../images/logo.svg";
+import down_arrow from "../images/down-arrow.svg";
+import icon_1 from "../images/timer-icon.svg";
 
 function Sidebar({ sidebarOpen, setSidebarOpen, variant = 'default'}) {
 
   const location = useLocation();
+  const navigate = useNavigate();
   const { pathname } = location;
   const trigger = useRef(null);
   const sidebar = useRef(null);
@@ -49,75 +52,79 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = 'default'}) {
     "name": "Geospatial Solutions",
     "subarray": [
         {
+            "id": 1,
+            "name": "Agriculture Platform",
+            "route" : "/agriculture-platform"
+        },
+        {
+            "id": 2,
+            "name": "Infrastructure  ",
+            "route" : "/infrastructure"
+        },
+        {
+            "id": 3,
+            "name": "Urban Mobility ",
+            "route" : "/urban-mobility"
+        },
+        {
             "id": 4,
-            "name": "Agriculture Platform"
-        },
-        {
-            "id": 5,
-            "name": "Infrastructure  "
-        },
-        {
-            "id": 6,
-            "name": "Urban Mobility "
-        },
-        {
-            "id": 19,
-            "name": "Suitable place "
+            "name": "Suitable place ",
+            "route" : "/suitable-place"
         }
     ]
     },
     {
-        "id": 4,
+        "id": 2,
         "name": "Cybersecurity ",
         "subarray": [
             {
-                "id": 8,
+                "id": 1,
                 "name": "Website Detection"
             },
             {
-                "id": 9,
+                "id": 2,
                 "name": "Mobile App Scanner"
             },
             {
-                "id": 10,
+                "id": 3,
                 "name": "Real-Time  Scanning"
             }
         ]
     },
     {
-        "id": 2,
+        "id": 3,
         "name": "Generative AI",
         "subarray": [
             {
-                "id": 2,
+                "id": 1,
                 "name": "Content Creation"
             },
             {
-                "id": 3,
+                "id": 2,
                 "name": "Design Solutions"
             }
         ]
     },
     {
-        "id": 7,
+        "id": 4,
         "name": "Climate Change",
         "subarray": [
             {
-                "id": 11,
+                "id": 1,
                 "name": "Monitoring Systems"
             },
             {
-                "id": 12,
+                "id": 2,
                 "name": "Mitigation Technologies"
             },
             {
-                "id": 13,
+                "id": 3,
                 "name": "Adaptation Tools"
             }
         ]
     },
     {
-        "id": 10,
+        "id": 5,
         "name": "AI and Machine",
         "subarray": [
             {
@@ -125,17 +132,16 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = 'default'}) {
                 "name": "Predictive Analytics"
             },
             {
-                "id": 17,
+                "id": 2,
                 "name": "Anomaly Detection"
             },
             {
-                "id": 18,
+                "id": 3,
                 "name": "Automated Decision-Making"
             }
         ]
     }
   ]
-
 
   return (
     <div className="min-w-fit">
@@ -165,15 +171,12 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = 'default'}) {
             <ul className="mt-3">
                   {data && data.map((item, k) =>{
                     return(
-                        <SidebarLinkGroup activecondition={pathname === "/" || pathname.includes("dashboard")}>
+                        <SidebarLinkGroup>
                           {(handleClick, open) => {
                             return (
                               <React.Fragment>
-                                <a
-                                  href="#0"
-                                  className={`block text-gray-800 dark:text-gray-100 truncate transition duration-150 ${
-                                    pathname === "/" || pathname.includes("dashboard") ? "" : "hover:text-gray-900 dark:hover:text-white"
-                                  }`}
+                                <a  href="#0"
+                                  className={`block text-gray-800 dark:text-gray-100 truncate transition duration-150 ${  pathname === "/" || pathname.includes("dashboard") ? "" : "hover:text-gray-900 dark:hover:text-white"  }`}
                                   onClick={(e) => {
                                     e.preventDefault();
                                     handleClick();
@@ -181,20 +184,13 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = 'default'}) {
                                   }}
                                 >
                                   <div className="flex items-center justify-between">
-                                    <div className="flex items-center">
-                                      <svg className={`shrink-0 fill-current ${pathname === "/" || pathname.includes("dashboard") ? 'text-violet-500' : 'text-gray-400 dark:text-gray-500'}`} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                                        <path d="M5.936.278A7.983 7.983 0 0 1 8 0a8 8 0 1 1-8 8c0-.722.104-1.413.278-2.064a1 1 0 1 1 1.932.516A5.99 5.99 0 0 0 2 8a6 6 0 1 0 6-6c-.53 0-1.045.076-1.548.21A1 1 0 1 1 5.936.278Z" />
-                                        <path d="M6.068 7.482A2.003 2.003 0 0 0 8 10a2 2 0 1 0-.518-3.932L3.707 2.293a1 1 0 0 0-1.414 1.414l3.775 3.775Z" />
-                                      </svg>                            
-                                      <span className="text-sm font-medium ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        {item.name}
-                                      </span>
-                                    </div>
-                                    {/* Icon */}
+                                      <div className="flex items-center">
+                                        <img className={`shrink-0 fill-current`} src={icon_1} />                       
+                                        <span className="text-sm font-medium ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">  {item.name} </span>
+                                      </div>
+                                   
                                     <div className="flex shrink-0 ml-2">
-                                      <svg className={`w-3 h-3 shrink-0 ml-1 fill-current text-gray-400 dark:text-gray-500 ${open && "rotate-180"}`} viewBox="0 0 12 12">
-                                        <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
-                                      </svg>
+                                      <img className={`w-3 h-3 shrink-0 ml-1  text-gray-400 dark:text-gray-500 ${open && "rotate-180"}`} src={down_arrow} />                       
                                     </div>
                                   </div>
                                 </a>
@@ -202,7 +198,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = 'default'}) {
                                   <ul className={`pl-8 mt-1 ${!open && "hidden"}`}>
                                         {item && item.subarray.map((data, r) =>{
                                         return(
-                                          <div className="p-1  text-grey-100 mb-3 cursor-pointer hover:text-gray-50"> {data.name}</div> 
+                                          <div key={data.id} className="p-1  text-grey-100 mb-3 cursor-pointer dark:hover:text-gray-50"  onClick={() => { if (data.route) { navigate(data.route);  }}}>
+                                             {data.name}
+                                          </div> 
                                         )})}
                                   </ul>
                                 </div>
